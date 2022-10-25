@@ -2,10 +2,14 @@ package com.example.movielisttest
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movielisttest.model.MovieResponse
+import com.squareup.picasso3.Picasso
 
-class MovieAdapter(private val dataset: List<String>):
+class MovieAdapter(private val dataset: List<MovieResponse>):
     RecyclerView.Adapter<MovieViewHolder>() {
 
     /**
@@ -27,9 +31,23 @@ class MovieAdapter(private val dataset: List<String>):
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         if(position % 2 == 0) {
-            holder.itemView.setBackgroundColor(Color.BLUE)
+            holder.itemView.setBackgroundColor(Color.GRAY)
         }
-        holder.tvMovieTitle.text = dataset[position]
+        holder.tvMovieTitle.text = dataset[position].title
+        holder.tvMovieYear.text = dataset[position].releaseYear.toString()
+        holder.tvMovieGenre.text = dataset[position].genre.toString()
+        holder.rbMovieRating.rating = dataset[position].rating
+        holder.ibExpand.setOnClickListener {
+            if(!holder.wgMovieGroup.isVisible)
+                holder.wgMovieGroup.visibility = View.VISIBLE
+            else
+                holder.wgMovieGroup.visibility = View.GONE
+        }
+        Picasso
+            .Builder(holder.itemView.context)
+            .build()
+            .load(dataset[position].image)
+            .into(holder.ivMovieImage)
     }
 
     override fun getItemCount(): Int {

@@ -1,23 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp">
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_movie_title"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_elements"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_margin="10dp"
-            android:gravity=""
-            android:padding="10dp"
-            tools:text="dsfefsfds" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            android:layout_margin="5dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_movie_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:layout_margin="10dp"
+                    android:gravity=""
+                    android:padding="10dp"
+                    tools:text="dsfefsfds"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+                <ImageView
+                    android:id="@+id/iv_movie_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="60dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_movie_title" />
 
-</androidx.cardview.widget.CardView>
+                <RatingBar
+                    android:id="@+id/rb_movie_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    app:layout_constraintBottom_toTopOf="@id/tv_movie_genre"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_movie_image" />
+                <TextView
+                    android:id="@+id/tv_movie_genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    tools:text="action, comedy, garbage"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_movie_year"
+                    android:layout_width="183dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    tools:text= "2020"
+                    app:layout_constraintBottom_toTopOf="@id/rb_movie_rating"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/wg_movie_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="tv_movie_year,tv_movie_genre,rb_movie_rating"
+                    tools:layout_editor_absoluteX="95dp"
+                    tools:layout_editor_absoluteY="71dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+        <ImageButton
+            android:id="@+id/ib_expand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:src="@drawable/ic_baseline_arrow_drop_down_circle_24"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-15dp"
+            android:translationZ="3dp" />
+    </LinearLayout>
+</RelativeLayout>
+
